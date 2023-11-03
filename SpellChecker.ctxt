@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=SpellChecker
+comment0.text=\r\n\ Escreva\ uma\ descri\u00E7\u00E3o\ da\ classe\ SpellChecker\ aqui.\r\n\ \r\n\ @author\ (seu\ nome)\r\n\ @version\ (um\ n\u00FAmero\ da\ vers\u00E3o\ ou\ uma\ data)\r\n
+comment1.params=dicionario
+comment1.target=SpellChecker(DictReader)
+comment2.params=
+comment2.target=int\ numberOfWords()
+comment3.params=palavra
+comment3.target=boolean\ isKnownWord(java.lang.String)
+comment4.params=words
+comment4.target=boolean\ allKnown(java.util.ArrayList)
+numComments=5

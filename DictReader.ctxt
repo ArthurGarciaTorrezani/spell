@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=DictReader
+comment0.text=\r\n\ Class\ DictReader\ offers\ functionality\ to\ load\ a\ dictionary\ from\ a\ file,\ \r\n\ and\ to\ save\ it\ back\ to\ a\ file.\r\n\ \r\n\ To\ use\ this\ class,\ create\ an\ instance\ of\ this\ class\ with\ the\ file\ name\ as\ \r\n\ a\ parameter.\ Then\ call\ 'getDictionary'\ to\ receive\ the\ dictionary\ object.\r\n\ \r\n\ @author\ M.\ Kolling\r\n\ @version\ 2006-10-24\r\n
+comment1.params=filename
+comment1.target=DictReader(java.lang.String)
+comment1.text=\r\n\ Create\ a\ DictReader\ instance\ from\ a\ file.\r\n
+comment2.params=
+comment2.target=java.util.ArrayList\ getDictionary()
+comment2.text=\r\n\ Return\ the\ dictionary\ as\ a\ list\ of\ words.\r\n
+comment3.params=dictionary
+comment3.target=void\ save(java.util.ArrayList)
+comment3.text=\r\n\ Accept\ a\ new\ dictionary\ and\ save\ it\ under\ the\ same\ name.\ Use\ the\ new\r\n\ one\ as\ our\ dictionary\ from\ now\ on.\r\n
+comment4.params=filename
+comment4.target=void\ loadDictionary(java.lang.String)
+comment4.text=\r\n\ Load\ the\ dictionary\ from\ disk\ and\ store\ it\ in\ the\ 'dict'\ field.\r\n
+numComments=5
