@@ -24,10 +24,10 @@ public class SpellChecker {
     }
 
     // verifica se a palvra solicitada existe no arquivo
-    public boolean isKnownWord(String palavra) {
+    public boolean isKnownWord(String word) {
         boolean igual = false;
-        for (String word : dicionario.getDictionary()) {
-            if (word.equals(palavra)) {
+        for (String wordi : dicionario.getDictionary()) {
+            if (wordi.equals(word)) {
                 igual = true;
             }
         }
