@@ -82,5 +82,6 @@ public class SpellChecker {
             // adiciona a palavra no arquivo
             dicionario.inserirPalavra(newWord);
         }
+        
     }
 }

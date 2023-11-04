@@ -17,7 +17,7 @@ import java.io.IOException;
 public class DictReader {
     private ArrayList<String> dict;
     private String filename;
-
+    
     /**
      * Create a DictReader instance from a file.
      */
@@ -41,6 +41,7 @@ public class DictReader {
     public void save(ArrayList<String> dictionary) {
         try {
             FileWriter out = new FileWriter(filename);
+            
             for (String word : dictionary) {
                 out.write(word);
                 out.write("\n");
@@ -75,12 +76,12 @@ public class DictReader {
     public void inserirPalavra(String palavra) {
         try {
             FileWriter fileWriter = new FileWriter(filename, true);
-
             fileWriter.append("\n" + palavra);
             fileWriter.close();
         } catch (IOException exc) {
             System.out.println("Error writing dictionary file: " + exc);
         }
     }
+    
 
 }
