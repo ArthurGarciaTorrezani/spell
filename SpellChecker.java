@@ -50,13 +50,14 @@ public class SpellChecker {
         return igual;
     }
 
+    // retorna palavras com os mesmos prefixos
     public ArrayList<String> wordsStartingWith(String prefix) {
-        ArrayList<String> palavras = new ArrayList<String>();
 
+        ArrayList<String> palavras = new ArrayList<String>();
         for (String word : dicionario.getDictionary()) {
             String formatedWord = word.toLowerCase();
             String formatedPrefix = prefix.toLowerCase();
-            
+
             String result = "";
             for (int i = 0; i < prefix.length(); i++) {
                 result += formatedWord.charAt(i);
@@ -68,4 +69,18 @@ public class SpellChecker {
         return palavras;
     }
 
+    public void insert(String newWord) {
+        boolean existe = false;
+        for (String word : dicionario.getDictionary()) {
+            String wordFormated = word.toLowerCase();
+            if (wordFormated.equals(newWord)) {
+                existe = true;
+                break;
+            }
+        }
+        if (existe == false) {
+            // adiciona a palavra no arquivo
+            dicionario.inserirPalavra(newWord);
+        }
+    }
 }
