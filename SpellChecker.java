@@ -79,9 +79,33 @@ public class SpellChecker {
             }
         }
         if (existe == false) {
-            // adiciona a palavra no arquivo
-            dicionario.inserirPalavra(newWord);
+            ArrayList<String> dici = dicionario.getDictionary();
+            dici.add(newWord);
+            dicionario.addDeletWord(dici);
         }
-        
+    }
+
+    public boolean remove(String wordRemove) {
+        boolean existe = false;
+        boolean ok = true;
+        for (String word : dicionario.getDictionary()) {
+            String wordFormated = word.toLowerCase();
+            if (wordFormated.equals(wordRemove)) {
+                existe = true;
+                break;
+            }
+        }
+        if (existe) {
+            ArrayList<String> dici = dicionario.getDictionary();
+            dici.remove(wordRemove);
+            ok = (dicionario.addDeletWord(dici));
+        }
+
+        if (ok) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 }

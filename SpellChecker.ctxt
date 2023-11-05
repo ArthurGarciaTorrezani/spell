@@ -13,4 +13,6 @@ comment5.params=prefix
 comment5.target=java.util.ArrayList\ wordsStartingWith(java.lang.String)
 comment6.params=newWord
 comment6.target=void\ insert(java.lang.String)
-numComments=7
+comment7.params=wordRemove
+comment7.target=boolean\ remove(java.lang.String)
+numComments=8
