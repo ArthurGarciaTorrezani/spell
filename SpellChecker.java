@@ -14,6 +14,19 @@ public class SpellChecker {
         this.dicionario = dicionario;
     }
 
+    // valida se a palavra existe
+    private boolean validation(String wordValidation) {
+        boolean existe = false;
+        for (String word : dicionario.getDictionary()) {
+            String wordFormated = word.toLowerCase();
+            if (wordFormated.equals(wordValidation)) {
+                existe = true;
+                break;
+            }
+        }
+        return existe;
+    }
+
     // conta a quantidade de palavras
     public int numberOfWords() {
         int cont = 0;
@@ -70,15 +83,7 @@ public class SpellChecker {
     }
 
     public void insert(String newWord) {
-        boolean existe = false;
-        for (String word : dicionario.getDictionary()) {
-            String wordFormated = word.toLowerCase();
-            if (wordFormated.equals(newWord)) {
-                existe = true;
-                break;
-            }
-        }
-        if (existe == false) {
+        if (validation(newWord) == false) {
             ArrayList<String> dici = dicionario.getDictionary();
             dici.add(newWord);
             dicionario.addDeletWord(dici);
@@ -86,26 +91,34 @@ public class SpellChecker {
     }
 
     public boolean remove(String wordRemove) {
-        boolean existe = false;
-        boolean ok = true;
-        for (String word : dicionario.getDictionary()) {
-            String wordFormated = word.toLowerCase();
-            if (wordFormated.equals(wordRemove)) {
-                existe = true;
-                break;
-            }
-        }
-        if (existe) {
+
+        boolean remove = false;
+        if (validation(wordRemove)) {
             ArrayList<String> dici = dicionario.getDictionary();
             dici.remove(wordRemove);
-            ok = (dicionario.addDeletWord(dici));
+            remove = (dicionario.addDeletWord(dici));
         }
-
-        if (ok) {
+        if (remove) {
             return true;
         } else {
             return false;
         }
-
     }
+
+    public boolean isPalindrome(String word) {
+        if (validation(word)) {
+            String palindromeWord = "";
+            for (int i = word.length() - 1; i >= 0; i--) {
+                palindromeWord += word.charAt(i);
+            }
+
+            if (word.equals(palindromeWord)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
+
 }
