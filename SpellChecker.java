@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * Escreva uma descrição da classe SpellChecker aqui.
@@ -12,19 +14,6 @@ public class SpellChecker {
     // recebe o arquivo de texto com as palavras
     public SpellChecker(DictReader dicionario) {
         this.dicionario = dicionario;
-    }
-
-    // valida se a palavra existe
-    private boolean validation(String wordValidation) {
-        boolean existe = false;
-        for (String word : dicionario.getDictionary()) {
-            String wordFormated = word.toLowerCase();
-            if (wordFormated.equals(wordValidation)) {
-                existe = true;
-                break;
-            }
-        }
-        return existe;
     }
 
     // conta a quantidade de palavras
@@ -71,11 +60,7 @@ public class SpellChecker {
             String formatedWord = word.toLowerCase();
             String formatedPrefix = prefix.toLowerCase();
 
-            String result = "";
-            for (int i = 0; i < prefix.length(); i++) {
-                result += formatedWord.charAt(i);
-            }
-            if (result.equals(formatedPrefix)) {
+            if (formatedPrefix.startsWith(formatedWord)) {
                 palavras.add(word);
             }
         }
@@ -83,9 +68,10 @@ public class SpellChecker {
     }
 
     public void insert(String newWord) {
-        if (validation(newWord) == false) {
+        if (isKnownWord(newWord) == false) {
             ArrayList<String> dici = dicionario.getDictionary();
             dici.add(newWord);
+            Collections.sort(dici, String.CASE_INSENSITIVE_ORDER);
             dicionario.addDeletWord(dici);
         }
     }
@@ -93,9 +79,10 @@ public class SpellChecker {
     public boolean remove(String wordRemove) {
 
         boolean remove = false;
-        if (validation(wordRemove)) {
+        if (isKnownWord(wordRemove)) {
             ArrayList<String> dici = dicionario.getDictionary();
             dici.remove(wordRemove);
+            Collections.sort(dici, String.CASE_INSENSITIVE_ORDER);
             remove = (dicionario.addDeletWord(dici));
         }
         if (remove) {
@@ -106,7 +93,7 @@ public class SpellChecker {
     }
 
     public boolean isPalindrome(String word) {
-        if (validation(word)) {
+        if (isKnownWord(word)) {
             String palindromeWord = "";
             for (int i = word.length() - 1; i >= 0; i--) {
                 palindromeWord += word.charAt(i);
@@ -119,6 +106,78 @@ public class SpellChecker {
             }
         }
         return false;
+    }
+
+    public ArrayList<String> anagrams(String word) {
+
+        ArrayList<String> anagramas = new ArrayList<>();
+
+        String word1Formated = word.toLowerCase();
+        char[] word1 = word1Formated.toCharArray();
+        Arrays.sort(word1);
+
+        for (String palavra : dicionario.getDictionary()) {
+            
+            String word2Formated = palavra.toLowerCase();
+            char[] word2 = word2Formated.toCharArray();
+            Arrays.sort(word2);
+
+            if(Arrays.equals(word1,word2)){
+                anagramas.add(palavra);
+            }
+        }
+
+        return anagramas;
+    }
+
+    public ArrayList<String> difference(ArrayList<String> dictionary){
+
+        ArrayList<String> diferentes = new ArrayList<>();
+
+        for(String palavra: dictionary){
+
+            for(String palavra2: dicionario.getDictionary()){
+                if(palavra.equals(palavra2) == false){
+                    diferentes.add(palavra);
+                }
+            }  
+        }
+
+         for(String palavra2: dicionario.getDictionary()){
+            
+            for(String palavra: dictionary){
+                if(palavra2.equals(palavra) == false){
+                    diferentes.add(palavra2);
+                }
+            }
+        }
+
+        return diferentes;
+    }
+
+
+
+    public int distance(String word1, String word2) {
+        int tamanhoWord1 = word1.length();
+        int tamanhoWord2 = word1.length();
+
+        int[][] matriz = new int[tamanhoWord1 + 1][tamanhoWord2 + 1];
+
+        for (int i = 0; i < tamanhoWord1; i++) {
+            matriz[0][i] = i;
+        }
+
+        for (int i = 0; i < tamanhoWord2; i++) {
+            matriz[i][0] = i;
+        }
+
+        for(int i = 0;i<tamanhoWord1;i++){
+            for(int j = 0;j<tamanhoWord2;i++){
+                matriz[i][j] = Math.min(tamanhoWord2, j);
+            }
+        }
+
+        return 1;
     }
 
 }

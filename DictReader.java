@@ -76,7 +76,6 @@ public class DictReader {
 
     // escreve o dicionario novamente com as alterações
     public boolean addDeletWord(ArrayList<String> palavras) {
-
         try {
             FileWriter fileWriter = new FileWriter(filename, false);
             for (String word : palavras) {
