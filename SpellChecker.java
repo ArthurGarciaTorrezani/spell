@@ -15,6 +15,11 @@ public class SpellChecker {
     public SpellChecker(DictReader dicionario) {
         this.dicionario = dicionario;
     }
+ 
+    public void save(){
+        ArrayList<String> dicionariO = dicionario.getDictionary();
+        dicionario.save(dicionariO);
+    }
 
     // conta a quantidade de palavras
     public int numberOfWords() {
@@ -40,30 +45,38 @@ public class SpellChecker {
     public boolean allKnown(ArrayList<String> words) {
         boolean igual = false;
         for (String wordi : words) {
+            boolean ingual = false;
             for (String word : dicionario.getDictionary()) {
                 if (wordi.equals(word)) {
-                    igual = true;
-                } else {
-                    igual = false;
-                    break;
+                    ingual = true;
                 }
+            }
+            if(ingual){
+                igual = true;
+            }else{
+                igual = false;
             }
         }
         return igual;
     }
 
+    
     // retorna palavras com os mesmos prefixos
     public ArrayList<String> wordsStartingWith(String prefix) {
 
         ArrayList<String> palavras = new ArrayList<String>();
+        palavras.add("asdsad");
         for (String word : dicionario.getDictionary()) {
             String formatedWord = word.toLowerCase();
             String formatedPrefix = prefix.toLowerCase();
 
             if (formatedPrefix.startsWith(formatedWord)) {
                 palavras.add(word);
+                System.out.println(word);
             }
         }
+
+
         return palavras;
     }
 
@@ -158,26 +171,29 @@ public class SpellChecker {
 
 
     public int distance(String word1, String word2) {
+        int distancia = 0;
         int tamanhoWord1 = word1.length();
         int tamanhoWord2 = word1.length();
 
         int[][] matriz = new int[tamanhoWord1 + 1][tamanhoWord2 + 1];
 
-        for (int i = 0; i < tamanhoWord1; i++) {
-            matriz[0][i] = i;
-        }
-
-        for (int i = 0; i < tamanhoWord2; i++) {
+        for (int i = 0; i <= tamanhoWord1; i++) {
             matriz[i][0] = i;
         }
 
-        for(int i = 0;i<tamanhoWord1;i++){
-            for(int j = 0;j<tamanhoWord2;i++){
-                matriz[i][j] = Math.min(tamanhoWord2, j);
-            }
+        for (int j = 0; j <= tamanhoWord2; j++) {
+            matriz[0][j] = j;
         }
 
-        return 1;
+        for(int i = 1;i<=tamanhoWord1;i++){
+            for(int j = 1;j<=tamanhoWord2;j++){
+                int custo = (word1.charAt(i-1) == word2.charAt(j-1))?0:1;
+                int minimo1 = Math.min(matriz[i-1][j]+1,matriz[i][j-1]+1);
+                matriz[i][j] = Math.min(minimo1, matriz[i-1][j-1]+custo);
+            }
+            distancia = matriz[tamanhoWord1][tamanhoWord2];
+        }
+        return distancia;
     }
 
 }
