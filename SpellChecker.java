@@ -143,16 +143,11 @@ public class SpellChecker {
         return anagramas;
     }
 
-   public ArrayList<String> difference() {
+  public ArrayList<String> difference(ArrayList<String> dictionary) {
 
         ArrayList<String> diferentes = new ArrayList<>();
-        ArrayList<String> diferentes2 = new ArrayList<>();
         
-        diferentes2.add("haha");
-        diferentes2.add("blublu");
-
-
-        for (String palavra : diferentes2) {
+        for (String palavra : dictionary) {
             boolean diferent = false;
 
             for (String palavra2 : dicionario.getDictionary()) {
@@ -171,7 +166,7 @@ public class SpellChecker {
         for (String palavra : dicionario.getDictionary()) {
             boolean diferent = false;
 
-            for (String palavra2 : diferentes2) {
+            for (String palavra2 : dictionary) {
                 if (palavra.equals(palavra2) == false) {
                     diferent = true;
                 } else {
