@@ -143,28 +143,50 @@ public class SpellChecker {
         return anagramas;
     }
 
-    public ArrayList<String> difference(ArrayList<String> dictionary){
+   public ArrayList<String> difference() {
 
         ArrayList<String> diferentes = new ArrayList<>();
+        ArrayList<String> diferentes2 = new ArrayList<>();
+        
+        diferentes2.add("haha");
+        diferentes2.add("blublu");
 
-        for(String palavra: dictionary){
 
-            for(String palavra2: dicionario.getDictionary()){
-                if(palavra.equals(palavra2) == false){
-                    diferentes.add(palavra);
+        for (String palavra : diferentes2) {
+            boolean diferent = false;
+
+            for (String palavra2 : dicionario.getDictionary()) {
+                if (palavra.equals(palavra2) == false) {
+                    diferent = true;
+                } else {
+                    diferent = false;
+                    break;
                 }
-            }  
-        }
-
-         for(String palavra2: dicionario.getDictionary()){
-            
-            for(String palavra: dictionary){
-                if(palavra2.equals(palavra) == false){
-                    diferentes.add(palavra2);
-                }
+            }
+            if (diferent) {
+                diferentes.add(palavra);
             }
         }
 
+        for (String palavra : dicionario.getDictionary()) {
+            boolean diferent = false;
+
+            for (String palavra2 : diferentes2) {
+                if (palavra.equals(palavra2) == false) {
+                    diferent = true;
+                } else {
+                    diferent = false;
+                    break;
+                }
+            }
+            if (diferent) {
+                diferentes.add(palavra);
+            }
+        }
+
+        for(String pali:diferentes){
+            System.out.println(pali);
+        }
         return diferentes;
     }
 
